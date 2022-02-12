@@ -1,15 +1,15 @@
-<h2><%= @post.title %></h2>
-<p><%= simple_format @post.body %></p>
+<h2><%= post.title %></h2>
+<p><%= simple_format post.body %></p>
 
 <h3>Comments<h3>
-<% if @post.comments.any? %>
-  <% @post.comments.each do |comment| %>
+<% if post.comments.any? %>
+  <% post.comments.each do |comment| %>
     <% if comment.id != nil %>
       <li>
         <%= comment.body %>
-        <%= link_to '[Edit]', edit_post_comment_path(@post, comment), class: 'command' %>
+        <%= link_to '[Edit]', edit_post_comment_path(post, comment), class: 'command' %>
         <%= link_to '[x]', 
-          post_comment_path(@post, comment), 
+          post_comment_path(post, comment), 
           method: :delete, 
           class: 'command',
           data: {confirm: 'Sure?'} %>
@@ -17,7 +17,7 @@
     <% end %>
   <% end %>
 <% end %>
-<%= form_for ([@post, @comment]) do |f| %>
+<%= form_for ([post, @comment]) do |f| %>
   <p>
     <%= f.text_field :body %>
   </p>

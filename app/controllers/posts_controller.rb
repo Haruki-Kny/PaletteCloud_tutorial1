@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    post
-    @comment = @post.comments.new
+    @comment = post.comments.new
   end
 
   def new
@@ -19,11 +18,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       # redirect
-      flash[:success] = 'レコードの保存に成功しました'
-      redirect_to posts_path
+      redirect_to posts_path, flash: {success: 'Postレコードの保存に成功しました'}
     else
-      flash.now[:error] = 'レコードの保存に失敗しました'
-      render :'new'
+      flash.now[:error] = 'Postレコードの保存に失敗しました'
+      render :new
     end
   end
 
@@ -32,30 +30,32 @@ class PostsController < ApplicationController
   end
 
   def update
-    post
-    if @post.update(post_params)
-      flash[:success] = 'レコードの更新に成功しました'
-      redirect_to posts_path
+    if post.update(post_params)
+      redirect_to posts_path, flash: {success: 'Postレコードの更新に成功しました' }
     else
-      flash.now[:error] = 'レコードの更新に失敗しました'
-      render :'edit'
+      flash.now[:error] = 'Postレコードの更新に失敗しました'
+      render :edit
     end
   end
   
   def destroy
-    post
-    @post.destroy
+    if post.destroy
+      flash[:success] = 'Postレコードの削除に成功しました'
+    else
+      flash[:error] = 'Postレコードの削除に失敗しました'
+    end      
     redirect_to posts_path
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 
   def post
     @post ||= Post.find(params[:id])
-  end
-  
+  end  
   helper_method :post
 
-  private
-    def post_params
-      params.require(:post).permit(:title, :body)
-    end
 end
