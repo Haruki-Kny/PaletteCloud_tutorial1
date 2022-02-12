@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 
   def create
-    tmp_comment = post.comments.new(comment_params)
-    if tmp_comment.save
+    comment = post.comments.new(comment_params)
+    if comment.save
       flash[:success] = 'Commentレコードの作成に成功しました'
     else
       flash[:error] = 'Commentレコードの作成に失敗しました'
@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
   
-  def edit
-    comment
+  def edit;
   end
 
   def update

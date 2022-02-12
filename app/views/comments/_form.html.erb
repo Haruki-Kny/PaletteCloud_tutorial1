@@ -1,8 +1,8 @@
-<%= form_for [@post, @comment] do |f| %>
+<%= form_for [post, comment] do |f| %>
   <p>
     <%= f.text_area :body, placeholder: 'enter comments' %>
-    <% if @comment.errors.messages[:body].any? %>
-      <% @comment.errors.messages.each do |message| %>
+    <% if comment.errors.messages[:body].any? %>
+      <% comment.errors.messages.each do |message| %>
         <span class="error">
           <%= message %>
         </span>
@@ -13,7 +13,7 @@
     <%= f.submit %>
   </p>
   <p>
-    <%= link_to '[Back]', post_path(@post) %>
+    <%= link_to '[Back]', post_path(post) %>
   </p>
 
 <% end %>
