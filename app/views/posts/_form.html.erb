@@ -1,8 +1,8 @@
-<%= form_for @post do |f| %>
+<%= form_for post do |f| %>
   <p>
     <%= f.text_field :title, placeholder: 'enter title' %>
-    <% if @post.errors.messages[:title].any? %>
-      <% @post.errors.messages.each do |message| %>
+    <% if post.errors.messages[:title].any? %>
+      <% post.errors.messages.each do |message| %>
         <span class="error">
           <%= message %>
         </span>
@@ -11,8 +11,8 @@
   </p>
   <p>
     <%= f.text_area :body, placeholder: 'enter body text' %>
-    <% if @post.errors.messages[:body].any? %>
-      <% @post.errors.messages.each do |message| %>
+    <% if post.errors.messages[:body].any? %>
+      <% post.errors.messages.each do |message| %>
         <span class="error">
           <%= message %>
         </span>
