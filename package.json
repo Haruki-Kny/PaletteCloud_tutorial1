@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "app",
+=======
+  "name": "myblog",
+>>>>>>> 096d738f90fb5ff72e854d96929f504987523563
   "private": true,
   "dependencies": {}
 }
