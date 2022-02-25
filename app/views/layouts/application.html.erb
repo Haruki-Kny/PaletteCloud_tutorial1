@@ -10,6 +10,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+    <div class = "container"> 
+    <h1><%= link_to image_tag( 'logo.png', class: 'logo'), root_path %></h1>
+      <%= yield %>
+    </div>
   </body>
 </html>
